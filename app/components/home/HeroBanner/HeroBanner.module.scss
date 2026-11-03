@@ -1,0 +1,89 @@
+@use "tokens" as *;
+
+.banner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  height: 390px;
+  padding-top: 78px;
+  overflow: hidden;
+  color: $color-white;
+  background: #111;
+
+  // Escurece a foto para garantir contraste do texto.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  @include down($bp-md) {
+    height: auto;
+    min-height: 320px;
+    padding-block: 48px;
+  }
+}
+
+// Enquadramento igual ao Figma: foto ampliada (~135% da largura) e deslocada
+// para o letreiro "Black Friday" ficar à direita do texto.
+.image {
+  position: absolute;
+  top: -46.7%;
+  left: -5.6%;
+  width: 135.4%;
+  max-width: none;
+  height: auto;
+
+  @include down($bp-md) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  @include container;
+
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  max-width: 600px;
+  font-size: 48px;
+  font-weight: $font-semibold;
+  line-height: 48px;
+
+  @include down($bp-md) {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
+
+.subtitle {
+  margin-top: 23px;
+  font-size: 32px;
+  font-weight: $font-regular;
+  line-height: 48px;
+
+  strong {
+    font-weight: $font-bold;
+    color: $color-yellow;
+  }
+
+  @include down($bp-md) {
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+
+.cta {
+  width: 206px;
+  height: 48px;
+  margin-top: 42px;
+  font-weight: $font-semibold;
+  text-transform: none;
+  text-decoration: none;
+}

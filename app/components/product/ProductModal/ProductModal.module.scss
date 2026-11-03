@@ -1,0 +1,147 @@
+@use "tokens" as *;
+
+$modal-font: "Work Sans", $font-family;
+
+.dialog {
+  width: calc(100% - 32px);
+  max-width: 768px;
+  padding: 0;
+  color: $color-text;
+  background: $color-white;
+  border: 0;
+  border-radius: $radius-sm;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.56);
+  }
+
+  &[open] {
+    animation: modal-in 0.2s ease-out;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: start;
+  min-height: 298px;
+  padding: 0 30px 37px 0;
+
+  @include down($bp-md) {
+    grid-template-columns: 1fr;
+    padding: 48px 24px 24px;
+  }
+}
+
+.close {
+  @include reset-button;
+  @include focus-ring;
+
+  position: absolute;
+  top: 10px;
+  right: 24px;
+  display: flex;
+  color: #656565;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $color-text-strong;
+  }
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+
+  @include down($bp-md) {
+    margin-top: 0;
+  }
+
+  img {
+    width: 233px;
+    height: auto;
+  }
+}
+
+.info {
+  padding-top: 61px;
+  padding-left: 30px;
+  font-family: $modal-font;
+
+  @include down($bp-md) {
+    padding-top: 24px;
+    padding-left: 0;
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: $font-regular;
+  line-height: 28px;
+  color: #3c3c3c;
+  text-transform: uppercase;
+}
+
+.price {
+  margin-top: 4px;
+  font-size: 22px;
+  font-weight: $font-semibold;
+  line-height: 32px;
+  color: $color-text;
+}
+
+.description {
+  // Reserva duas linhas, como no layout, para os botões não mudarem de lugar.
+  min-height: 30px;
+  max-width: 280px;
+  margin-top: 21px;
+  font-size: 11px;
+  line-height: 15px;
+  color: #a1a1a1;
+}
+
+.details {
+  @include focus-ring;
+
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: $font-semibold;
+  line-height: 18px;
+  color: $color-accent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+
+  @include down($bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.buy {
+  width: 188px;
+  height: 35px;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: $font-semibold;
+
+  @include down($bp-sm) {
+    width: 100%;
+  }
+}

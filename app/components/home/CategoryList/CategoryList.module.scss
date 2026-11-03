@@ -1,0 +1,85 @@
+@use "tokens" as *;
+
+// 7 cards de 128px + espaços + margens não cabem abaixo disso.
+$bp-scroll: 1100px;
+
+.section {
+  @include container;
+
+  margin-top: 40px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 44px;
+
+  @include down($bp-xl) {
+    gap: 24px;
+  }
+
+  @include down($bp-scroll) {
+    justify-content: flex-start;
+    // Espaço para a sombra dos cards não ser cortada pelo overflow.
+    margin-inline: -8px;
+    padding: 8px 8px 12px;
+    overflow-x: auto;
+    scroll-padding-inline: 8px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 128px;
+  scroll-snap-align: start;
+  outline: none;
+
+  &:focus-visible .card {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &:hover .card {
+    transform: translateY(-2px);
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  color: $color-accent;
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-soft;
+  transition:
+    background-color $transition,
+    transform $transition;
+}
+
+.label {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: $font-regular;
+  line-height: 21px;
+  color: $color-text-body;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.active {
+  .card {
+    background: $color-white;
+  }
+
+  .label {
+    font-weight: $font-semibold;
+    color: $color-accent;
+  }
+}

@@ -1,0 +1,84 @@
+@use "tokens" as *;
+
+.showcase {
+  @include container;
+
+  margin-top: $section-spacing;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 2px;
+  border: 1px solid $color-border;
+
+  @include down($bp-md) {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+.tab {
+  @include reset-button;
+
+  height: 38px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: $font-regular;
+  line-height: 24px;
+  color: $color-text;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color $transition;
+
+  & + & {
+    border-left: 1px solid $color-border;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: -3px;
+  }
+}
+
+.tabActive {
+  font-weight: $font-bold;
+  color: $color-primary;
+}
+
+.seeAll {
+  @include focus-ring;
+
+  display: block;
+  width: fit-content;
+  margin: -2px auto 0;
+  font-size: 15px;
+  font-weight: $font-semibold;
+  line-height: 24px;
+  color: $color-text;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: $color-gray-500;
+  background: $color-surface;
+  border-radius: $radius-md;
+}

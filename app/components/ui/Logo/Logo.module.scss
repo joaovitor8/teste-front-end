@@ -1,0 +1,20 @@
+@use "tokens" as *;
+
+.logo {
+  display: block;
+  overflow: visible;
+  font-family: "Outfit", $font-family;
+  font-weight: $font-semibold;
+}
+
+.circle {
+  fill: $color-yellow;
+}
+
+.text {
+  fill: $color-logo-text;
+}
+
+.textInverse {
+  fill: $color-white;
+}

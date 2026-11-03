@@ -1,0 +1,203 @@
+@use "tokens" as *;
+
+.header {
+  position: relative;
+  z-index: 2;
+  background: $color-white;
+}
+
+.inner {
+  @include container;
+}
+
+// Barra de vantagens
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  height: 32px;
+  padding-top: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-gray-300;
+
+  strong {
+    font-weight: $font-semibold;
+    color: $color-accent;
+  }
+
+  @include down($bp-lg) {
+    gap: 32px;
+  }
+
+  @include down($bp-md) {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.benefitIcon {
+  flex-shrink: 0;
+  color: $color-gray-400;
+}
+
+// Linha principal: logo | busca centralizada | ações
+.main {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 630px) 1fr;
+  align-items: center;
+  height: 70px;
+
+  @include down($bp-md) {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "logo actions"
+      "search search";
+    row-gap: 12px;
+    height: auto;
+    padding-block: 12px;
+  }
+}
+
+.logo {
+  justify-self: start;
+  @include focus-ring;
+
+  @include down($bp-md) {
+    grid-area: logo;
+  }
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background: $color-search;
+  border-radius: $radius-md;
+
+  @include down($bp-md) {
+    grid-area: search;
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 56px 0 16px;
+  font-size: 12px;
+  color: $color-text;
+  background: transparent;
+  border: 0;
+  outline: 0;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.searchButton {
+  @include reset-button;
+  @include focus-ring;
+
+  position: absolute;
+  right: 26px;
+  display: flex;
+  color: $color-gray-400;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 34px;
+
+  @include down($bp-md) {
+    grid-area: actions;
+    gap: 16px;
+  }
+}
+
+.action {
+  @include focus-ring;
+
+  display: flex;
+  color: $color-gray-400;
+  border-radius: $radius-sm;
+  transition: color $transition;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// Menu de categorias
+.nav {
+  border-top: 1px solid $color-line-light;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 92px;
+  height: 41px;
+
+  @include down($bp-xl) {
+    gap: 48px;
+  }
+
+  @include down($bp-lg) {
+    justify-content: flex-start;
+    gap: 32px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+.navLink {
+  @include focus-ring;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: $font-medium;
+  line-height: 18px;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color $transition;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.navLinkHighlight {
+  font-weight: $font-semibold;
+  color: $color-accent;
+}

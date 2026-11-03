@@ -1,0 +1,51 @@
+@use "tokens" as *;
+
+// 5 círculos de 212px + espaços + margens não cabem abaixo disso.
+$bp-scroll: 1240px;
+
+.section {
+  @include container;
+
+  margin-top: $section-spacing;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+  margin-top: 30px;
+
+  @include down($bp-xl) {
+    gap: 24px;
+  }
+
+  @include down($bp-scroll) {
+    justify-content: flex-start;
+    padding: 12px;
+    margin-inline: -12px;
+    overflow-x: auto;
+  }
+}
+
+.brand {
+  @include focus-ring;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 212px;
+  height: 212px;
+  background: $color-white;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+  transition: transform $transition;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  @include down($bp-lg) {
+    width: 160px;
+    height: 160px;
+  }
+}

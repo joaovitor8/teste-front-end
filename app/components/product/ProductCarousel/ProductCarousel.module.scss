@@ -1,0 +1,90 @@
+@use "tokens" as *;
+
+$slide-width: 304px;
+$slide-gap: 18px;
+// Largura mínima para as setas caberem fora dos cards (1270px + setas + barra de rolagem).
+$arrows-outside: 1400px;
+
+.carousel {
+  position: relative;
+  // 4 cards de 304px + 3 espaços de 18px = 1270px, centralizado no container.
+  max-width: $slide-width * 4 + $slide-gap * 3;
+  margin-inline: auto;
+}
+
+.track {
+  display: flex;
+  gap: $slide-gap;
+  // Espaço para a sombra dos cards não ser cortada pelo overflow.
+  margin: -16px -16px;
+  padding: 16px 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  flex: 0 0 $slide-width;
+  scroll-snap-align: start;
+
+  @include down($bp-sm) {
+    flex-basis: 80%;
+  }
+}
+
+.arrow {
+  @include reset-button;
+  @include focus-ring;
+
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $color-text-body;
+  background: $color-white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+  transform: translateY(-50%);
+  transition:
+    opacity $transition,
+    color $transition;
+
+  &:hover:not(:disabled) {
+    color: $color-primary;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  // No toque a navegação é pelo próprio scroll.
+  @include down($bp-md) {
+    display: none;
+  }
+}
+
+.prev {
+  left: -48px;
+
+  @include down($arrows-outside) {
+    left: -8px;
+  }
+}
+
+.next {
+  right: -48px;
+
+  @include down($arrows-outside) {
+    right: -8px;
+  }
+}

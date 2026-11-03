@@ -1,0 +1,107 @@
+@use "tokens" as *;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 26px 14px 15px;
+  background: $color-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: box-shadow $transition;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+  }
+}
+
+.trigger {
+  @include reset-button;
+
+  font-weight: inherit;
+  text-align: left;
+  outline: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-md;
+  }
+
+  &:focus-visible::after {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+}
+
+.image {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.description {
+  display: -webkit-box;
+  min-height: 48px;
+  margin-top: 2px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 16px;
+  font-weight: $font-light;
+  line-height: 24px;
+  color: $color-text-body;
+}
+
+.prices {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 11px;
+}
+
+.listPrice {
+  font-size: 16px;
+  font-weight: $font-regular;
+  line-height: 24px;
+  color: $color-gray-500;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: $font-bold;
+  line-height: 30px;
+  color: $color-text;
+  text-decoration: none;
+}
+
+.installments {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 20px;
+  color: $color-text-body;
+}
+
+.shipping {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 20px;
+  color: $color-primary;
+}
+
+.buy {
+  position: relative;
+  z-index: 1;
+  margin-top: 11px;
+  font-size: 14px;
+}
